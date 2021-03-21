@@ -1,21 +1,160 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>CSS button 예제</title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-      <table class="table">
-        <tr>
-          <td class="active">...</td>
-          <td class="success">...</td>
-          <td class="warning">...</td>
-          <td class="danger">...</td>
-          <td class="info">...</td>
-        </tr>
-      </table>
-      <h1 class="sentence">안녕하세요, 홈페이지에 오신 것을 환영합니다.</h1>
-      <button class="bt">확인</button>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="container">
+    <div>이름 : <input type="text" id="name" value="" /></div>
+    <div>지역 :
+      <select id="city" onchange="changeCity();">
+        <!-- <option value="02" selected>서울</option>
+        <option value="064">제주</option> -->
+      </select>
+    </div>
+    <div>동네 :
+      <select id="region_02">
+        <option value="">강남</option>
+        <option value="">서초</option>
+      </select>
+      <select id="region_064" style="display:none;">
+        <option value="">제주시</option>
+        <option value="">서귀포시</option>
+      </select>
+    </div>
+    <div>테스트 : <input type="text" id="test" value="" /></div>
+    <button type="button" onclick="regist();">등록</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+    integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+    integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
+    crossorigin="anonymous"></script>
+  <script>
+    function regist() {
+      //alert(document.getElementById("name").value);
+      //alert(document.getElementById("city").value);
+
+      alert($('#name').val())
+      alert($('#city').val())
+
+      let obj = {
+        name: "",
+        city: ""
+      };//굳이 key랑 value 설정 안 해도 let obj = {} 이렇게 만들어 놓고 obj.key=$~~해서 값 넣으면 됨. 
+      //자바스크립트에서 가장 많이 접하게 되고 가장 잘 다루어야 하는 data type 중에 하나가 object type임. --> dictionary in python
+      // object안에는 object, arr, 다 담을 수 있음. 다중 구조도 가능.
+      let obj2 = {
+        obj3: {
+
+        },
+        arr: []
+      };
+
+
+      obj.name = $('#name').val(); //object 안에 있는 name이라는 key를 갖는 것에 접근, 여기에 화면에서 사용자가 입력한 name을 넣어줄 것임.
+      obj.city = $('#city').val();
+
+      //console.log(obj);
+      printConsole(obj);
+
+      //document.getElementById("name").value;
+    }
+
+
+    function changeCity() {
+      // let city = document.getElementById("city").value;
+      // document.getElementById("region_02").style.display="none";
+      // document.getElementById("region_064").style.display="none";
+
+      // document.getElementById("region_"+city).style.display="";
+
+      let city = $('#city').val();
+      $('#region_02').hide();
+      $('#region_064').hide();
+      $('#region_' + city).show();
+    }
+
+    function printConsole(data) {
+      console.log(data);
+    }
+
+    //var, let, const 변수선언
+    //var: 다시 사용, 선언 가능.
+    //let: 다시 사용은 가능, 선언은 불가능.
+    //const: 다시 사용, 선언 불가능.
+    // var x = 1;
+    // x = x + 2;
+
+    let y = 1;
+    // y = y + 2;
+
+    // const z = 1;
+
+    //type: 숫자, 소수점 숫자, 문자, 참/거짓(boolean), 오브젝트, 배열
+    //let a = 1; //숫자
+    // a = 1.231; // 소수점
+    // a = "byungjun"; //문자
+    // a = true; //false(boolean)
+
+    //나중에 프로그램 코딩할 때 보면 object 굉장히 많이 쓰게 됨.
+    //예를 들어 회원가입할 때 사용자가 입력한 다양한 값들이 있는데 이것을 서버 쪽으로 데이터를 던져 주어야 하는데 서버에서 그것을 받아서 DB에 저장을 하게 되는데 던질 때  하나하나를 일일이 던지는 개념이 아니고 object로, 나중에 json이라는 구조를 볼 텐데 json이 object구조로 되어 있음. 그래서 데이터를 이렇게 object라는 것을 선언을 하고 여기 안에 데이터를 한번에 넣은 다음 object 하나를 쒹 던지게 됨. 그러면 데이터가 다 날라가는 것임. 
+    //object는 key와 value로 이루어진 묶음임. object의 값에 접근할 때도 key를 가지고 접근함.
+
+    //배열: 여러 개의 데이터 세트, 다중 데이터, 여러 개의 데이터를 순서를 갖고 담겨 있는 data type. --> list in python
+    //배열도 object와 마찬가지로 숫자, object, 배열 등등 다 담을 수 있음.
+
+    function loadCity() {
+      let city = [{
+        code: "02",
+        name: "서울"
+      },
+      {
+        code: "064",
+        name: "제주"
+      },
+      {
+        code: "051",
+        name: "부산"
+      }
+      ];
+
+      for (let i = 0; i < city.length; i++) {
+        
+        if (i == 0) {
+          $('#city').append('<option value="' + city[i].code + '" selected>' + city[i].name + '</option>');
+        } else if(i == 1) {
+          $('#city').append('<option value="' + city[i].code + '">' + city[i].name + '</option>');
+        } else {
+          $('#city').append('<option value="' + city[i].code + '">' + city[i].name + '</option>');
+        }
+
+      }
+
+      //append란 id에 해당하는 곳에 원하는 element를 추가할 수 있게 해줌.
+      // $('#city').append('<option value="02" selected>서울</option>');
+      // $('#city').append('<option value="064">제주</option>');
+    }
+
+    loadCity();
+
+    document.getElementById("test").value = y;
+  </script>
+</body>
+
 </html>
